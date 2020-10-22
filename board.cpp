@@ -7,7 +7,7 @@ Board::Board(QWidget *parent) :
     ui(new Ui::Board)
 {
     ui->setupUi(this);
-  //  BoardIcon.load("C:\Users\Luis\Documents\Ajedrez_Prueba\tablero.jpg");
+   BoardIcon.load("C:/Users/Luis/Documents/Ajedrez_Prueba/Imagenes/tablero.png");
 
  //Board.load("C:/Users/Luis/Documents/Ajedrez_Prueba/tablero.jpg");
  //myicon=new QIcon("");
@@ -15,10 +15,6 @@ Board::Board(QWidget *parent) :
  //QIcon icon("C:/Users/Luis/Documents/Ajedrez_Prueba/tablero.jpg");
  //Board.setWindownIcon(icon);
  // QAction myicon = new QIcon("");
-
-
-
-
 }
 
 Board::~Board()
@@ -26,6 +22,7 @@ Board::~Board()
     delete ui;
 }
 
-//void Board::paintEvent(QPaintEvent *){
-    //QPainter painter
-//}
+void Board::paintEvent(QPaintEvent *){
+    QPainter painter(this);
+    painter.drawPixmap(0,0,width(),width(),BoardIcon);
+}
