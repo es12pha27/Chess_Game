@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(Ajedrez_Prueba LANGUAGES CXX)
+project(Prueba_2 LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -8,7 +8,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
@@ -28,25 +28,25 @@ find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
 if(ANDROID)
-  add_library(Ajedrez_Prueba SHARED
+  add_library(Prueba_2 SHARED
     main.cpp
-    ajedrez.cpp
-    ajedrez.h
-    ajedrez.ui
-
+    mainwindow.cpp
+    mainwindow.h
+    mainwindow.ui
   )
 else()
-  add_executable(Ajedrez_Prueba
+  add_executable(Prueba_2
     main.cpp
-    ajedrez.cpp
-    ajedrez.h
-    ajedrez.ui
+    mainwindow.cpp
+    mainwindow.h
+    mainwindow.ui
     Board.cpp
     Board.h
     Board.ui
     Piece.cpp
     Piece.h
-    )
+  )
 endif()
 
-target_link_libraries(Ajedrez_Prueba PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+
+target_link_libraries(Prueba_2 PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
