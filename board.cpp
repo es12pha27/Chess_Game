@@ -7,14 +7,8 @@ Board::Board(QWidget *parent) :
     ui(new Ui::Board)
 {
     ui->setupUi(this);
-   BoardIcon.load("C:/Users/Luis/Documents/Ajedrez_Prueba/Imagenes/tablero.png");
+   BoardIcon.load("/Documents/Ajedrez_Prueba/Imagenes/tablero.png");
 
- //Board.load("C:/Users/Luis/Documents/Ajedrez_Prueba/tablero.jpg");
- //myicon=new QIcon("");
-
- //QIcon icon("C:/Users/Luis/Documents/Ajedrez_Prueba/tablero.jpg");
- //Board.setWindownIcon(icon);
- // QAction myicon = new QIcon("");
 }
 
 Board::~Board()
