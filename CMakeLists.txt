@@ -41,11 +41,11 @@ else()
     ajedrez.cpp
     ajedrez.h
     ajedrez.ui
-    Board.h
     Board.cpp
+    Board.h
     Board.ui
-    imagen.qrc
-    tabla.qrc
+    Piece.cpp
+    Piece.h
     )
 endif()
 
