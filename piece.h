@@ -12,11 +12,9 @@ class Piece :public QLabel{
 public:
    explicit Piece(QWidget *parent =nullptr);
     virtual ~Piece(){};
-private:
+protected:
     ui::Piece *ui;
     QPixmap PieceIcon;
 };
 
 #endif // PIECE_H
-
-
