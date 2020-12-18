@@ -14,7 +14,6 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     Locker *collection[10][10];
@@ -22,7 +21,6 @@ public:
     int num=5;
     Piece* pieceToMove;
     QList <Piece*> piecesInGame;
-
 private:
     Ui::MainWindow *ui;
     Board *chess;

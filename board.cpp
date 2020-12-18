@@ -10,13 +10,14 @@ extern MainWindow *qmain;
 Board::Board(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Board)
-{  ui->setupUi(this);
+{   ui->setupUi(this);
     initializeBlack();  //inicializar las fichas negras
     initializeWhite();
+
 }
 void Board::initializeBoard()
 {
-   /* QString darkStyle="Locker { font-weight: bold;font-size: 20px;background-color : "
+    QString darkStyle="Locker { font-weight: bold;font-size: 20px;background-color : "
                       "darkslategray;color : white;  border: 1px solid black; }";
     QString whiteStyle="Locker { font-weight: bold;font-size: 20px;background-color : white;color : white;"
                        "  border: 1px solid black; }";
@@ -35,19 +36,12 @@ void Board::initializeBoard()
             qmain->collection[i][j]->setStyleSheet(darkStyle);
             }
         }
-        for (unsigned i = 0; i < NumLocker; ++i){
-                for (int j = 0; j < NumLocker; ++j){
-
-                mainLayout->addWidget(qmain->collection[i][j], i, j);
-                mainLayout->setSpacing(0);
-            }
-            }
 
 
         qmain->collection[0][0] = new Locker(0,0,"");
-        qmain->collection[0][9] =new Locker(0,9,"");
+        qmain->collection[0][9] = new Locker(0,9,"");
         qmain->collection[9][0] = new Locker(9,0,"");
-        qmain->collection[9][9] =new Locker(9,9,"");
+        qmain->collection[9][9] = new Locker(9,9,"");
         qmain->collection[0][0]->setStyleSheet(darkStyle);
         qmain->collection[0][9]->setStyleSheet(darkStyle);
         qmain->collection[9][0]->setStyleSheet(darkStyle);
@@ -90,9 +84,7 @@ void Board::initializeBoard()
     setLayout(mainLayout);
 
     setWindowTitle(tr("Board"));
-    }*/
-    qmain=new MainWindow();
-    qDebug()<<qmain->num<<"\n";
+    }
 
 }
 
