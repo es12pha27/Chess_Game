@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.12.2, 2020-12-17T19:24:44. -->
+<!-- Written by QtCreator 4.12.2, 2020-12-17T22:05:43. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -308,9 +308,8 @@
     </valuelist>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Proyecto2</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/Estephany/Desktop/PROYECTO_AJEDREZ_FINAL/Proyecto - copia/Proyecto.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/Estephany/Desktop/PROYECTO_AJEDREZ_FINAL/Proyecto - copia/Proyecto.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/Estephany/Desktop/chessGamrGitHub/Chess_Game/Proyecto.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/Estephany/Desktop/chessGamrGitHub/Chess_Game/Proyecto.pro</value>
     <value type="QString" key="RunConfiguration.Arguments"></value>
     <value type="bool" key="RunConfiguration.Arguments.multi">false</value>
     <value type="QString" key="RunConfiguration.OverrideDebuggerStartup"></value>

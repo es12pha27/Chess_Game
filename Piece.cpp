@@ -31,7 +31,9 @@ bool Piece::getStatus(){
 bool Piece::getCan_move(){
     return can_move;
 }
-void Piece::movePiece(){};
+void Piece::movePiece(){
+
+};
 
 //los posibles caminos
 void Piece::getPath(){};

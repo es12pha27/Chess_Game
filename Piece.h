@@ -5,12 +5,11 @@
 #include <iostream>
 #include <cassert>
 #include <map>
-#include "Locker.h"
+
 
 namespace ui{
 class Piece;
 }
-
 class Piece :public QLabel{
 
     Q_OBJECT

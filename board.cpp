@@ -4,7 +4,9 @@
 #include <QDebug>
 #include <iostream>
 #include "mainwindow.h"
-extern MainWindow *main;
+
+extern MainWindow *qmain;
+
 Board::Board(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Board)
@@ -14,7 +16,7 @@ Board::Board(QWidget *parent) :
 }
 void Board::initializeBoard()
 {
-    QString darkStyle="Locker { font-weight: bold;font-size: 20px;background-color : "
+   /* QString darkStyle="Locker { font-weight: bold;font-size: 20px;background-color : "
                       "darkslategray;color : white;  border: 1px solid black; }";
     QString whiteStyle="Locker { font-weight: bold;font-size: 20px;background-color : white;color : white;"
                        "  border: 1px solid black; }";
@@ -25,35 +27,82 @@ void Board::initializeBoard()
         {
             Locker *cell = new Locker(i,j,"");
             cell->setName(names[i-1][j-1]);
-            main->collection[i][j] = cell;
+            qmain->collection[i][j] = cell;
             if((i+j)%2==0){
-            main->collection[i][j]-> setStyleSheet(whiteStyle);
+            qmain->collection[i][j]-> setStyleSheet(whiteStyle);
             }
             else{
-            main->collection[i][j]->setStyleSheet(darkStyle);
+            qmain->collection[i][j]->setStyleSheet(darkStyle);
             }
         }
         for (unsigned i = 0; i < NumLocker; ++i){
                 for (int j = 0; j < NumLocker; ++j){
 
-                mainLayout->addWidget(main->collection[i][j], i, j);
+                mainLayout->addWidget(qmain->collection[i][j], i, j);
                 mainLayout->setSpacing(0);
             }
             }
 
 
+        qmain->collection[0][0] = new Locker(0,0,"");
+        qmain->collection[0][9] =new Locker(0,9,"");
+        qmain->collection[9][0] = new Locker(9,0,"");
+        qmain->collection[9][9] =new Locker(9,9,"");
+        qmain->collection[0][0]->setStyleSheet(darkStyle);
+        qmain->collection[0][9]->setStyleSheet(darkStyle);
+        qmain->collection[9][0]->setStyleSheet(darkStyle);
+        qmain->collection[9][9]->setStyleSheet(darkStyle);
+
+
+
+        //Dibujando las letras del tablero
+        int  j=0;
+         for (unsigned i = 1; i < NumLocker-1; ++i){
+             qmain->collection[0][i] =new Locker(0,i,letters[j]);
+             qmain->collection[0][i]->setStyleSheet(darkStyle);
+             qmain->collection[0][i]->setMaximumSize(qmain->collection[0][i]->size().rwidth(),30);
+
+
+             qmain->collection[0][i] =new Locker(9,i,letters[j]);
+             qmain->collection[0][i]->setStyleSheet(darkStyle);
+             qmain->collection[0][i]->setMaximumSize(qmain->collection[9][i]->size().rwidth(),30);
+
+             if(j<8)j++;
+         }
+         //Dibujando los numeros del tablero
+       j=NumLocker-2;
+        for (unsigned i = 1; i < NumLocker-1; ++i){
+            qmain->collection[i][0] =new Locker(i,0,QString::number(j));
+            qmain->collection[i][0]->setStyleSheet(darkStyle);
+
+            qmain->collection[i][9] = new Locker(i,9,QString::number(j));
+            qmain->collection[i][9]->setStyleSheet(darkStyle);
+            j--;
+        }
+        for (unsigned i = 0; i < NumLocker; ++i){
+                for (int j = 0; j < NumLocker; ++j){
+
+                mainLayout->addWidget(qmain->collection[i][j], i, j);
+                mainLayout->setSpacing(0);
+            }
+            }
 
     setLayout(mainLayout);
 
     setWindowTitle(tr("Board"));
-    }
+    }*/
+    qmain=new MainWindow();
+    qDebug()<<qmain->num<<"\n";
+
 }
 
 void Board::addPieces(){}
 void Board::initializeWhite(){}
 void Board::initializeBlack(){}
 void Board::reset(){}
-
+Board::~Board(){
+ delete ui;
+}
 
 
 

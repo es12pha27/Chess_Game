@@ -19,6 +19,7 @@ public:
     ~MainWindow();
     Locker *collection[10][10];
     void showBoard();
+    int num=5;
     Piece* pieceToMove;
     QList <Piece*> piecesInGame;
 
