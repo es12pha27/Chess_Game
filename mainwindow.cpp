@@ -1,11 +1,12 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "Game.h"
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    showBoard();
 }
 
 MainWindow::~MainWindow()
@@ -13,10 +14,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-void MainWindow::on_start_game_clicked()
+void MainWindow::showBoard()
 {
-Game *game=new Game();
-game->show();
-close();
+    chess = new Board();
+    chess->initializeBoard();
+
 }
