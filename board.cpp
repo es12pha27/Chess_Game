@@ -11,12 +11,8 @@ Board::Board(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Board)
 {   ui->setupUi(this);
-    initializeBlack();  //inicializar las fichas negras
-    initializeWhite();
 
-}
-void Board::initializeBoard()
-{
+
     QString darkStyle="Locker { font-weight: bold;font-size: 20px;background-color : "
                       "darkslategray;color : white;  border: 1px solid black; }";
     QString whiteStyle="Locker { font-weight: bold;font-size: 20px;background-color : white;color : white;"
@@ -36,12 +32,12 @@ void Board::initializeBoard()
             qmain->collection[i][j]->setStyleSheet(darkStyle);
             }
         }
+        }
 
-
-        qmain->collection[0][0] = new Locker(0,0,"");
-        qmain->collection[0][9] = new Locker(0,9,"");
-        qmain->collection[9][0] = new Locker(9,0,"");
-        qmain->collection[9][9] = new Locker(9,9,"");
+        qmain->collection[0][0] =new Locker(0,0,"");
+        qmain->collection[0][9] =new Locker(0,9,"");
+        qmain->collection[9][0] =new Locker(9,0,"");
+        qmain->collection[9][9] =new Locker(9,9,"");
         qmain->collection[0][0]->setStyleSheet(darkStyle);
         qmain->collection[0][9]->setStyleSheet(darkStyle);
         qmain->collection[9][0]->setStyleSheet(darkStyle);
@@ -84,7 +80,16 @@ void Board::initializeBoard()
     setLayout(mainLayout);
 
     setWindowTitle(tr("Board"));
-    }
+
+
+
+
+    initializeBlack();  //inicializar las fichas negras
+    initializeWhite();
+}
+void Board::initializeBoard()
+{
+
 
 }
 
