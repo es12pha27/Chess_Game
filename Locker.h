@@ -1,49 +1,57 @@
-#ifndef LOCKER_H
-#define LOCKER_H
+#ifndef CHESSCELL_H
+#define CHESSCELL_H
+#include <QGraphicsRectItem>
+#include <QBrush>
+#include <QGraphicsSceneMouseEvent>
+#include "chesspiece.h"
+#include <QTextEdit>
 
-#include <QToolButton>
-#include <QtWidgets>
-
-#include <memory>
-
-namespace Ui {
-class Locker;
-}
-
-class Locker:public QToolButton
+class ChessPiece;
+class ChessCell: public QObject, public QGraphicsRectItem
 {
-    Q_OBJECT
-private:
-
-    int x;
-    int y;
-    QString name=" "; //Nombre de la celda
-    bool status=false;  //Indicara si esta ocupado o desocupado
-    Locker* direccion=this;
-
-
 public:
-    //Los contructores
-    Locker(int ib,int jb,const QString &text, QWidget *parent = nullptr);
-    Locker();
-    //Seters
-    void setName(QString n);
-    void setX(int x);
-    void setY(int y);
-    void setStatus(bool s);
 
-    //Geters
-    int getX();
-    int getY();
-    QString getName();
-    bool getStatus();
+    //Constructor
+    ChessCell(QString text="",QGraphicsItem *parent=0);
+    //destructor
+    ~ChessCell();
 
-    //Movimiento piezas
-    void mousePressEvent(QMouseEvent *event);
-    void dragMoveEvent(QDragMoveEvent *event) override;
-    void dropEvent(QDropEvent *event) override;
-    void dragEnterEvent(QDragEnterEvent *event) override;
+    //se presione esa celda
+    void mousePressEvent(QGraphicsSceneMouseEvent *event);
+    //cambiar de color
+    void setColor(QColor color);
+    //obtener el lugar de una pieza
+    void placePiece(ChessPiece *piece);
+
+    //resetear al color original
+    void resetOriginalColor();
+    //cambia el color original
+    void setOriginalColor(QColor value);
+
+    //verificar si una celda tiene una pieza
+    bool getHasChessPiece();
+    //cambia la pieza que tiene
+    void setHasChessPiece(bool value,ChessPiece *piece = 0);
+
+    void checkForCheck();
+
+    //oobtiene el color de la pieza que contiene
+    QString getChessPieceColor() ;
+    void setChessPieceColor(QString value);
+    int rowLoc;
+    int colLoc;
+    QString name=" ";
+    ChessPiece * currentPiece;
+    void setText(QString text);
+private:
+    QColor originalColor;
+    bool hasChessPiece;
+    QBrush brush;
+    QString chessPieceColor;
+    QTextEdit cabecera;
+    QGraphicsTextItem *texto;
+
 
 };
 
-#endif // LOCKER_H
+#endif // CHESSCELL_H
