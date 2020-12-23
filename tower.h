@@ -1,7 +1,7 @@
 #ifndef TOWER_H
 #define TOWER_H
-#include "chesspiece.h"
-class Tower:public ChessPiece
+#include "Piece.h"
+class Tower:public Piece
 {
 public:
     Tower(QString team, QGraphicsItem *parent = 0);

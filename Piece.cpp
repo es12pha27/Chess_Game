@@ -1,87 +1,87 @@
 
-#include "chesspiece.h"
-#include "core.h"
+#include "Piece.h"
+#include "game.h"
 #include <QDebug>
 #include <memory>
 #include "king.h"
 #include <QColor>
 
-extern Core *core;
+extern Game *game;
 
-ChessPiece::ChessPiece(QString team, QGraphicsItem *parent):QGraphicsPixmapItem(parent)
+Piece::Piece(QString team, QGraphicsItem *parent):QGraphicsPixmapItem(parent)
 {
     side = team;
     Moved = true;
     firstMove = true;
 }
-//evento al presionar una chesspiece
-void ChessPiece::mousePressEvent(QGraphicsSceneMouseEvent *event)
+//evento al presionar una Piece
+void Piece::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     //Deselect
-    if(this == core->pieceToMove){
-        core->pieceToMove->getCurrentCell()->resetOriginalColor();
-        core->pieceToMove->recolor();
-        core->pieceToMove = NULL;
+    if(this == game->pieceToMove){
+        game->pieceToMove->getCurrentCell()->resetOriginalColor();
+        game->pieceToMove->recolor();
+        game->pieceToMove = NULL;
        return;
     }
     //para saber si ya paso su turno
-    if((!getMoved() )|| ( (core->getTurn() != this->getSide())&& (!core->pieceToMove)) )
+    if((!getMoved() )|| ( (game->getTurn() != this->getSide())&& (!game->pieceToMove)) )
         return;
-    if(!core->pieceToMove){
+    if(!game->pieceToMove){
 
-        core->pieceToMove = this;
-        core->pieceToMove->getCurrentCell()->setColor(QColor(42,157,143));
-        core->pieceToMove->move();
+        game->pieceToMove = this;
+        game->pieceToMove->getCurrentCell()->setColor(QColor(42,157,143));
+        game->pieceToMove->move();
     }
-    else if(this->getSide() != core->pieceToMove->getSide()){
+    else if(this->getSide() != game->pieceToMove->getSide()){
         this->getCurrentCell()->mousePressEvent(event);
     }
 
 
 }
 /*Cambia la celda actual en donde se encuentra el obj*/
-void ChessPiece::setCurrentCell(ChessCell *Cell)
+void Piece::setCurrentCell(Locker *Cell)
 {
 
     currentCell = Cell;
 }
 /*Obtiene la celda actual en donde se encuentra el obj*/
-ChessCell *ChessPiece::getCurrentCell()
+Locker *Piece::getCurrentCell()
 {
     return currentCell;
 }
 /*obtiene el bando (equipo) donde se encuentra black or white*/
-QString ChessPiece::getSide()
+QString Piece::getSide()
 {
     return side;
 }
 /*asigna el bando (equipo) donde se encuentra black or white*/
-void ChessPiece::setSide( QString value)
+void Piece::setSide( QString value)
 {
     side = value;
 }
 
 //retornamos el valor moved
-bool ChessPiece::getMoved()
+bool Piece::getMoved()
 {
     return Moved;
 }
 
 //cambiamos el valor de moved
-void ChessPiece::setMoved(bool value)
+void Piece::setMoved(bool value)
 {
     Moved = value;
 
 }
 
 //retornamos la location en la que estamos
-QList<ChessCell *> ChessPiece::moveLocation()
+QList<Locker *> Piece::moveLocation()
 {
     return location;
 }
 
 //reseteamos el color
-void ChessPiece::recolor()
+void Piece::recolor()
 {
     for(size_t i = 0, n = location.size(); i < n;i++) {
          location[i]->resetOriginalColor();
@@ -89,9 +89,9 @@ void ChessPiece::recolor()
 }
 
 
-bool ChessPiece::CellSetup(ChessCell *Cell)
+bool Piece::CellSetup(Locker *Cell)
 {
-    if(Cell->getHasChessPiece()) {
+    if(Cell->getHasPiece()) {
         King *q = dynamic_cast<King*>(location.last()->currentPiece);
         if(q){
             Cell->setColor(Qt::blue);
@@ -101,7 +101,7 @@ bool ChessPiece::CellSetup(ChessCell *Cell)
         return true;
     }
     else
-        location.last()->setColor(Qt::darkRed);
+        location.last()->setColor(Qt::darkYellow);
     return false;
 }
 

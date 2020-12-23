@@ -1,8 +1,8 @@
 #ifndef PAWN_H
 #define PAWN_H
 
-#include "chesspiece.h"
-class Pawn:public ChessPiece
+#include "Piece.h"
+class Pawn:public Piece
 {
 public:
     Pawn(QString team,QGraphicsItem *parent = 0);

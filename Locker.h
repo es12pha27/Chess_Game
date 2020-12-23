@@ -1,27 +1,27 @@
-#ifndef CHESSCELL_H
-#define CHESSCELL_H
+#ifndef Locker_H
+#define Locker_H
 #include <QGraphicsRectItem>
 #include <QBrush>
 #include <QGraphicsSceneMouseEvent>
-#include "chesspiece.h"
+#include "Piece.h"
 #include <QTextEdit>
 
-class ChessPiece;
-class ChessCell: public QObject, public QGraphicsRectItem
+class Piece;
+class Locker: public QObject, public QGraphicsRectItem
 {
 public:
 
     //Constructor
-    ChessCell(QString text="",QGraphicsItem *parent=0);
+    Locker(QString text="",QGraphicsItem *parent=0);
     //destructor
-    ~ChessCell();
+    ~Locker();
 
     //se presione esa celda
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     //cambiar de color
     void setColor(QColor color);
     //obtener el lugar de una pieza
-    void placePiece(ChessPiece *piece);
+    void placePiece(Piece *piece);
 
     //resetear al color original
     void resetOriginalColor();
@@ -29,29 +29,29 @@ public:
     void setOriginalColor(QColor value);
 
     //verificar si una celda tiene una pieza
-    bool getHasChessPiece();
+    bool getHasPiece();
     //cambia la pieza que tiene
-    void setHasChessPiece(bool value,ChessPiece *piece = 0);
+    void setHasPiece(bool value,Piece *piece = 0);
 
     void checkForCheck();
 
     //oobtiene el color de la pieza que contiene
-    QString getChessPieceColor() ;
-    void setChessPieceColor(QString value);
+    QString getPieceColor() ;
+    void setPieceColor(QString value);
     int rowLoc;
     int colLoc;
     QString name=" ";
-    ChessPiece * currentPiece;
+    Piece * currentPiece;
     void setText(QString text);
 private:
     QColor originalColor;
-    bool hasChessPiece;
+    bool hasPiece;
     QBrush brush;
-    QString chessPieceColor;
+    QString PieceColor;
     QTextEdit cabecera;
     QGraphicsTextItem *texto;
 
 
 };
 
-#endif // CHESSCELL_H
+#endif // Locker_H

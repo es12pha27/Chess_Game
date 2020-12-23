@@ -1,7 +1,7 @@
 #include "queen.h"
-#include "core.h"
-extern Core *core;
-Queen::Queen(QString team,QGraphicsItem *parent):ChessPiece(team,parent)
+#include "game.h"
+extern Game *game;
+Queen::Queen(QString team,QGraphicsItem *parent):Piece(team,parent)
 {
     name="D";
     //se inicializa poniendo su imagen
@@ -28,13 +28,13 @@ void Queen::move()
     QString team = this->getSide();
     //For up
 
-     for(int i = row-1,j = col; i >= 0 ; i--) {
-       if(core->collection[i][j]->getChessPieceColor() == team ) {
+     for(int i = row-1,j = col; i >= 1 ; i--) {
+       if(game->collection[i][j]->getPieceColor() == team ) {
            break;
        }
        else
        {
-           location.append(core->collection[i][j]);
+           location.append(game->collection[i][j]);
            if(CellSetup(location.last()))
                break;
         }
@@ -43,12 +43,12 @@ void Queen::move()
      //For Down
 
       for(int i = row+1,j = col; i <= 8 ; i++) {
-        if(core->collection[i][j]->getChessPieceColor() == team ) {
+        if(game->collection[i][j]->getPieceColor() == team ) {
             break;
         }
         else
         {
-            location.append(core->collection[i][j]);
+            location.append(game->collection[i][j]);
             if(CellSetup(location.last())){
                 break;
             }
@@ -58,12 +58,12 @@ void Queen::move()
 
        for(int i = row,j = col+1; j <= 8 ; j++)
        {
-             if(core->collection[i][j]->getChessPieceColor() == team ) {
+             if(game->collection[i][j]->getPieceColor() == team ) {
                  break;
              }
              else
              {
-                 location.append(core->collection[i][j]);
+                 location.append(game->collection[i][j]);
                  if(CellSetup(location.last()))
                      break;
               }
@@ -72,12 +72,12 @@ void Queen::move()
       //For left
 
        for(int i = row,j = col-1; j >= 1 ; j--) {
-         if(core->collection[i][j]->getChessPieceColor() == team ) {
+         if(game->collection[i][j]->getPieceColor() == team ) {
              break;
          }
          else
          {
-             location.append(core->collection[i][j]);
+             location.append(game->collection[i][j]);
              if(CellSetup(location.last()))
                 break;
          }
@@ -85,13 +85,13 @@ void Queen::move()
        //For upper right
 
         for(int i = row-1,j = col+1; i >= 1 && j <= 8; i--,j++) {
-          if(core->collection[i][j]->getChessPieceColor() == team ) {
+          if(game->collection[i][j]->getPieceColor() == team ) {
               break;
 
           }
           else
           {
-              location.append(core->collection[i][j]);
+              location.append(game->collection[i][j]);
               if(CellSetup(location.last())){
                   break;
               }
@@ -101,13 +101,13 @@ void Queen::move()
         //For upper Left
 
          for(int i = row-1,j = col-1; i >= 1 && j >=1; i--,j--) {
-           if(core->collection[i][j]->getChessPieceColor() == team ) {
+           if(game->collection[i][j]->getPieceColor() == team ) {
                break;
 
            }
            else
            {
-               location.append(core->collection[i][j]);
+               location.append(game->collection[i][j]);
                if(CellSetup(location.last()) ){
                    break;
                }
@@ -117,13 +117,13 @@ void Queen::move()
           //For downward right
 
            for(int i = row+1,j = col+1; i <= 8 && j <= 8; i++,j++) {
-             if(core->collection[i][j]->getChessPieceColor() == team ) {
+             if(game->collection[i][j]->getPieceColor() == team ) {
                  break;
 
              }
              else
              {
-                 location.append(core->collection[i][j]);
+                 location.append(game->collection[i][j]);
                  if(CellSetup(location.last())){
                      break;
                  }
@@ -133,13 +133,13 @@ void Queen::move()
            //For downward left
 
             for(int i = row+1,j = col-1; i <= 8 && j >= 1; i++,j--) {
-              if(core->collection[i][j]->getChessPieceColor() == team ) {
+              if(game->collection[i][j]->getPieceColor() == team ) {
                   break;
 
               }
               else
               {
-                  location.append(core->collection[i][j]);
+                  location.append(game->collection[i][j]);
                   if(CellSetup(location.last())){
                       break;
                   }

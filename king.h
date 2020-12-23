@@ -1,8 +1,8 @@
 #ifndef KING_H
 #define KING_H
 
-#include "chesspiece.h"
-class King:public ChessPiece
+#include "Piece.h"
+class King:public Piece
 {
 public:
     King(QString team,QGraphicsItem *parent = 0);

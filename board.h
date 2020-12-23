@@ -1,7 +1,7 @@
 #ifndef CHESSBOARD_H
 #define CHESSBOARD_H
 #include <QGraphicsRectItem>
-#include "chesspiece.h"
+#include "Piece.h"
 class Board
 {
 public:
@@ -21,8 +21,8 @@ public:
 
     void reset();
 private:
-    QList <ChessPiece *> whitePieces;
-    QList <ChessPiece *> blackPieces;
+    QList <Piece *> whitePieces;
+    QList <Piece *> blackPieces;
     QString names[8][8]={{"a8","b8","c8","d8","e8","f8","g8","h8"},
                             {"a7","b7","c7","d7","e7","f7","g7","h7"},
                             {"a6","b6","c6","d6","e6","f6","g6","h6"},

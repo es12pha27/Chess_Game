@@ -6,6 +6,7 @@
 #include <QColor>
 
 //constructor explicito que recibe el nombre del boton y un qgraphicsitem que puede ser null
+
 Button::Button(QString nombre, QGraphicsItem *parent)
     :QGraphicsRectItem(parent)
 {

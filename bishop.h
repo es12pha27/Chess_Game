@@ -1,8 +1,8 @@
 #ifndef BISHOP_H
 #define BISHOP_H
 
-#include "chesspiece.h"
-class Bishop:public ChessPiece
+#include "Piece.h"
+class Bishop:public Piece
 {
 public:
     Bishop(QString team,QGraphicsItem *parent = 0);

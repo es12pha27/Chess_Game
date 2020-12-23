@@ -1,9 +1,9 @@
 #include "bishop.h"
 
 #include <QDebug>
-#include "core.h"
-extern Core *core;
-Bishop::Bishop(QString team,QGraphicsItem *parent):ChessPiece(team,parent)
+#include "game.h"
+extern Game *game;
+Bishop::Bishop(QString team,QGraphicsItem *parent):Piece(team,parent)
 {
     name="A";
     //se inicializa poniendo su imagen
@@ -27,13 +27,13 @@ void Bishop::move()
     //Diagonal izq arriba
 
      for(int i = row-1,j = col-1; i >= 1 && j >=1; i--,j--) {
-       if(core->collection[i][j]->getChessPieceColor() == team ) {
+       if(game->collection[i][j]->getPieceColor() == team ) {
            break;
 
        }
        else
        {
-           location.append(core->collection[i][j]);
+           location.append(game->collection[i][j]);
            if(CellSetup(location.last()) ){
                break;
            }
@@ -41,13 +41,13 @@ void Bishop::move()
     }
      //Diagonal derecha arriba
       for(int i = row-1,j = col+1; i >= 1 && j <= 8; i--,j++) {
-        if(core->collection[i][j]->getChessPieceColor() == team ) {
+        if(game->collection[i][j]->getPieceColor() == team ) {
             break;
 
         }
         else
         {
-            location.append(core->collection[i][j]);
+            location.append(game->collection[i][j]);
             if(CellSetup(location.last())){
                 break;
             }
@@ -55,11 +55,11 @@ void Bishop::move()
      }
       //Diagonal derecha abajo
        for(int i = row+1,j = col+1; i <= 8 && j <= 8; i++,j++) {
-         if(core->collection[i][j]->getChessPieceColor() == team ) {
+         if(game->collection[i][j]->getPieceColor() == team ) {
              break;
          }
          else
-         {location.append(core->collection[i][j]);
+         {location.append(game->collection[i][j]);
              if(CellSetup(location.last())){
                  break;
              }
@@ -68,12 +68,12 @@ void Bishop::move()
        //Diagonal izq abajo
 
         for(int i = row+1,j = col-1; i <= 8 && j >= 1; i++,j--) {
-          if(core->collection[i][j]->getChessPieceColor() == team ) {
+          if(game->collection[i][j]->getPieceColor() == team ) {
               break;
           }
           else
           {
-              location.append(core->collection[i][j]);
+              location.append(game->collection[i][j]);
               if(CellSetup(location.last())){
                   break;
               }

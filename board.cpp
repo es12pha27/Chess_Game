@@ -1,17 +1,17 @@
 #include "board.h"
 #include "Locker.h"
-#include "core.h"
+#include "game.h"
 #include "queen.h"
 #include "tower.h"
 #include "pawn.h"
 #include "king.h"
-#include "horse.h"
+#include "knight.h"
 #include "bishop.h"
 #include <QColor>
 #include <QRect>
 #include <QDebug>
 
-extern Core *core;
+extern Game *game;
 Board::Board()
 {
     initializeBlack();  //inicializar las fichas negras
@@ -31,8 +31,8 @@ void Board::initializeBoard(int x,int y)
     int m=8,n=8;
     for(uint16_t i = 0; i < NumLocker; i++) {
         for(uint16_t j = 0; j < NumLocker; j++)
-        {   ChessCell *cell = new ChessCell("");
-            core->collection[i][j] = cell;
+        {   Locker *cell = new Locker("");
+            game->collection[i][j] = cell;
             cell->rowLoc = i;
             cell->colLoc = j;
             cell->setPos(x+sizeCell*j,y+sizeCell*i);
@@ -69,10 +69,10 @@ void Board::initializeBoard(int x,int y)
                 //qDebug()<<cell->name<<cell->rowLoc<<"-"<<cell->colLoc;
 
             if((i+j)%2==0)
-                cell->setOriginalColor(QColor(47, 79, 79));
+                cell->setOriginalColor( QColor(255, 255, 255));
             else
-                cell->setOriginalColor(QColor(255, 255, 255));}
-                core->aggregateToScene(cell);
+                cell->setOriginalColor(QColor(47, 79, 79));}
+                game->aggregateToScene(cell);
         }
     }
 
@@ -84,18 +84,18 @@ void Board::addPieces() {
         for(uint16_t j = 1; j < 9; j++)
         {
 
-            ChessCell *cell =core->collection[i][j];
+            Locker *cell =game->collection[i][j];
             if(i < 3 ) {
                 static uint16_t k;
                 cell->placePiece(blackPieces[k]);
-                core->piecesInGame.append(blackPieces[k]);
-                core->aggregateToScene(blackPieces[k++]);
+                game->piecesIngame.append(blackPieces[k]);
+                game->aggregateToScene(blackPieces[k++]);
             }
             if(i > 6 ) {
                 static uint16_t h;
                 cell->placePiece(whitePieces[h]);
-                core->piecesInGame.append(whitePieces[h]);
-                core->aggregateToScene(whitePieces[h++]);
+                game->piecesIngame.append(whitePieces[h]);
+                game->aggregateToScene(whitePieces[h++]);
             }
 
         }
@@ -105,14 +105,14 @@ void Board::addPieces() {
 //inicializar las fichas blancas
 void Board::initializeWhite()
 {
-    ChessPiece *pieceToAdd;
+    Piece *pieceToAdd;
     for(int i = 1; i < 9; i++) {
         pieceToAdd = new Pawn("WHITE");
         whitePieces.append(pieceToAdd);
     }
     pieceToAdd = new Tower("WHITE");
     whitePieces.append(pieceToAdd);
-    pieceToAdd = new Horse("WHITE");
+    pieceToAdd = new Knight("WHITE");
     whitePieces.append(pieceToAdd);
     pieceToAdd = new Bishop("WHITE");
     whitePieces.append(pieceToAdd);
@@ -122,7 +122,7 @@ void Board::initializeWhite()
     whitePieces.append(pieceToAdd);
     pieceToAdd = new Bishop("WHITE");
     whitePieces.append(pieceToAdd);
-    pieceToAdd = new Horse("WHITE");
+    pieceToAdd = new Knight("WHITE");
     whitePieces.append(pieceToAdd);
     pieceToAdd = new Tower("WHITE");
     whitePieces.append(pieceToAdd);
@@ -132,10 +132,10 @@ void Board::initializeWhite()
 //inicializando las piezas negras
 void Board::initializeBlack()
 {
-    ChessPiece *pieceToAdd;
+    Piece *pieceToAdd;
     pieceToAdd = new Tower("BLACK");
     blackPieces.append(pieceToAdd);
-    pieceToAdd = new Horse("BLACK");
+    pieceToAdd = new Knight("BLACK");
     blackPieces.append(pieceToAdd);
     pieceToAdd = new Bishop("BLACK");
     blackPieces.append(pieceToAdd);
@@ -145,7 +145,7 @@ void Board::initializeBlack()
     blackPieces.append(pieceToAdd);
     pieceToAdd = new Bishop("BLACK");
     blackPieces.append(pieceToAdd);
-    pieceToAdd = new Horse("BLACK");
+    pieceToAdd = new Knight("BLACK");
     blackPieces.append(pieceToAdd);
     pieceToAdd = new Tower("BLACK");
     blackPieces.append(pieceToAdd);
@@ -165,16 +165,16 @@ void Board::reset() {
             for(int j = 1; j < 9; j++)
             {
 
-                ChessCell *box =core->collection[i][j];
-                box->setHasChessPiece(false);
-                box->setChessPieceColor("NONE");
+                Locker *box =game->collection[i][j];
+                box->setHasPiece(false);
+                box->setPieceColor("NONE");
                 box->currentPiece = NULL;
                 if(i < 3 ) {
 
                     box->placePiece(blackPieces[k]);
                     blackPieces[k]->setMoved(true);
                     blackPieces[k]->firstMove = true;
-                    core->piecesInGame.append(blackPieces[k++]);
+                    game->piecesIngame.append(blackPieces[k++]);
 
                 }
                 if(i > 6  ) {
@@ -182,7 +182,7 @@ void Board::reset() {
                     box->placePiece(whitePieces[h]);
                     whitePieces[h]->setMoved(true);
                     whitePieces[h]->firstMove = true;
-                    core->piecesInGame.append(whitePieces[h++]);
+                    game->piecesIngame.append(whitePieces[h++]);
 
 
                 }

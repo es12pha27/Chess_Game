@@ -2,9 +2,9 @@
 #include <QDebug>
 #include <typeinfo>
 #include "king.h"
-#include "core.h"
-extern Core *core;
-Pawn::Pawn(QString team,QGraphicsItem *parent):ChessPiece(team,parent)
+#include "game.h"
+extern Game *game;
+Pawn::Pawn(QString team,QGraphicsItem *parent):Piece(team,parent)
 {
     name=" ";
     //se inicializa poniendo su imagen
@@ -29,38 +29,38 @@ void Pawn::move()
     int row = this->getCurrentCell()->rowLoc;
     int col = this->getCurrentCell()->colLoc;
     if(this->getSide() == "WHITE")  {
-        if(col > 1 && row > 1 && core->collection[row-1][col-1]->getChessPieceColor() == "BLACK") {
-            location.append(core->collection[row-1][col-1]);
+        if(col > 1 && row > 1 && game->collection[row-1][col-1]->getPieceColor() == "BLACK") {
+            location.append(game->collection[row-1][col-1]);
             CellSetup(location.last());
         }
-        if(col < 8 && row > 1 && core->collection[row-1][col+1]->getChessPieceColor() == "BLACK") {
-            location.append(core->collection[row-1][col+1]);
+        if(col < 8 && row > 1 && game->collection[row-1][col+1]->getPieceColor() == "BLACK") {
+            location.append(game->collection[row-1][col+1]);
             CellSetup(location.last());
         }
-        if(row>1 && (!core->collection[row-1][col]->getHasChessPiece())) {
-            location.append(core->collection[row-1][col]);
+        if(row>1 && (!game->collection[row-1][col]->getHasPiece())) {
+            location.append(game->collection[row-1][col]);
             CellSetup(location.last());
-            if(firstMove && !core->collection[row-2][col]->getHasChessPiece()){
-                location.append(core->collection[row-2][col]);
+            if(firstMove && !game->collection[row-2][col]->getHasPiece()){
+                location.append(game->collection[row-2][col]);
                 CellSetup(location.last());
             }
         }
 
     }
     else{
-        if(col > 1 && row < 8 && core->collection[row+1][col-1]->getChessPieceColor() == "WHITE") {//left
-            location.append(core->collection[row+1][col-1]);
+        if(col > 1 && row < 8 && game->collection[row+1][col-1]->getPieceColor() == "WHITE") {//left
+            location.append(game->collection[row+1][col-1]);
             CellSetup(location.last());
         }
-        if(col < 8 && row < 8 && core->collection[row+1][col+1]->getChessPieceColor() == "WHITE") {//right
-            location.append(core->collection[row+1][col+1]);
+        if(col < 8 && row < 8 && game->collection[row+1][col+1]->getPieceColor() == "WHITE") {//right
+            location.append(game->collection[row+1][col+1]);
             CellSetup(location.last());
         }
-        if(row<8 && (!core->collection[row+1][col]->getHasChessPiece())) {
-            location.append(core->collection[row+1][col]);
+        if(row<8 && (!game->collection[row+1][col]->getHasPiece())) {
+            location.append(game->collection[row+1][col]);
             CellSetup(location.last());
-            if(firstMove && !core->collection[row+2][col]->getHasChessPiece()){
-                location.append(core->collection[row+2][col]);
+            if(firstMove && !game->collection[row+2][col]->getHasPiece()){
+                location.append(game->collection[row+2][col]);
                 CellSetup(location.last());
             }
 

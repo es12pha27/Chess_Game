@@ -17,13 +17,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     Locker.cpp \
+    Piece.cpp \
     bishop.cpp \
     board.cpp \
     button.cpp \
-    chesspiece.cpp \
-    core.cpp \
-    horse.cpp \
+    game.cpp \
     king.cpp \
+    knight.cpp \
     main.cpp \
     pawn.cpp \
     queen.cpp \
@@ -31,13 +31,13 @@ SOURCES += \
 
 HEADERS += \
     Locker.h \
+    Piece.h \
     bishop.h \
     board.h \
     button.h \
-    chesspiece.h \
-    core.h \
-    horse.h \
+    game.h \
     king.h \
+    knight.h \
     pawn.h \
     queen.h \
     tower.h

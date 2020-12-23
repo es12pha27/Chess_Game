@@ -1,8 +1,8 @@
 #ifndef QUEEN_H
 #define QUEEN_H
 
-#include "chesspiece.h"
-class Queen:public ChessPiece
+#include "Piece.h"
+class Queen:public Piece
 {
 public:
     Queen(QString team,QGraphicsItem *parent = 0);

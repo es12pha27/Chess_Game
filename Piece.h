@@ -1,40 +1,41 @@
-#ifndef CHESSPIECE_H
-#define CHESSPIECE_H
+#ifndef Piece_H
+#define Piece_H
 #include "Locker.h"
 #include <QGraphicsPixmapItem>
 #include <QGraphicsSceneMouseEvent>
 struct Move_piece{
    QString origin;
    QString destiny;
-   QString name=" ";
+   QString name="";
 };
-class ChessCell;
-class ChessPiece:public QGraphicsPixmapItem
+class Locker;
+class Piece:public QGraphicsPixmapItem
 {
 public:
-    ChessPiece(QString team = "",QGraphicsItem *parent = 0);
+    Piece(QString team = "",QGraphicsItem *parent = 0);
 
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
-    void setCurrentCell(ChessCell *Cell);
-    ChessCell *getCurrentCell() ;
+    void setCurrentCell(Locker *Cell);
+    Locker *getCurrentCell() ;
     QString getSide() ;
     void setSide( QString value);
     virtual void setImage() = 0;
     bool getMoved() ;
     void setMoved(bool value);
-    QList <ChessCell *> moveLocation();
+    QList <Locker *> moveLocation();
     virtual void move() = 0;
     void recolor();
     bool firstMove;
-    bool CellSetup(ChessCell *Cell);
+    bool CellSetup(Locker *Cell);
     Move_piece control;
+    QString name;
 protected:
-    ChessCell *currentCell;
+    Locker *currentCell;
     QString side;
     bool Moved;
-    QList <ChessCell *> location;
-    QString name;
+    QList <Locker *> location;
+
 
 };
 
-#endif // CHESSPIECE_H
+#endif // Piece_H

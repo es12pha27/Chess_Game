@@ -1,7 +1,7 @@
 #include "tower.h"
-#include "core.h"
-extern Core *core;
-Tower::Tower(QString team,QGraphicsItem *parent):ChessPiece(team,parent)
+#include "game.h"
+extern Game *game;
+Tower::Tower(QString team,QGraphicsItem *parent):Piece(team,parent)
 {
     name="T";
     //se inicializa poniendo su imagen
@@ -28,12 +28,12 @@ void Tower::move()
     //AArriba
 
      for(int i = row-1,j = col; i >= 1 ; i--) {
-       if(core->collection[i][j]->getChessPieceColor() == team ) {
+       if(game->collection[i][j]->getPieceColor() == team ) {
            break;
        }
        else
        {
-           location.append(core->collection[i][j]);
+           location.append(game->collection[i][j]);
            if(CellSetup(location.last()))
                break;
         }
@@ -42,12 +42,12 @@ void Tower::move()
      //Abajo
 
       for(int i = row+1,j = col; i <= 8 ; i++) {
-        if(core->collection[i][j]->getChessPieceColor() == team ) {
+        if(game->collection[i][j]->getPieceColor() == team ) {
             break;
         }
         else
         {
-            location.append(core->collection[i][j]);
+            location.append(game->collection[i][j]);
             if(CellSetup(location.last())){
                 break;
             }
@@ -57,12 +57,12 @@ void Tower::move()
       //Izq
 
        for(int i = row,j = col-1; j >= 1 ; j--) {
-         if(core->collection[i][j]->getChessPieceColor() == team ) {
+         if(game->collection[i][j]->getPieceColor() == team ) {
              break;
          }
          else
          {
-             location.append(core->collection[i][j]);
+             location.append(game->collection[i][j]);
              if(CellSetup(location.last()))
                 break;
          }
@@ -71,12 +71,12 @@ void Tower::move()
 
         for(int i = row,j = col+1; j <= 8 ; j++)
         {
-              if(core->collection[i][j]->getChessPieceColor() == team ) {
+              if(game->collection[i][j]->getPieceColor() == team ) {
                   break;
               }
               else
               {
-                  location.append(core->collection[i][j]);
+                  location.append(game->collection[i][j]);
                   if(CellSetup(location.last()))
                       break;
                }

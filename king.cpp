@@ -1,8 +1,8 @@
 #include "king.h"
 #include "pawn.h"
-#include "core.h"
-extern Core *core;
-King::King(QString team,QGraphicsItem *parent):ChessPiece(team,parent)
+#include "game.h"
+extern Game *game;
+King::King(QString team,QGraphicsItem *parent):Piece(team,parent)
 {
     name="R";
     //se inicializa poniendo su imagen
@@ -28,62 +28,69 @@ void King::move()
     int col = this->getCurrentCell()->colLoc;
     QString team = this->getSide();
 
-        if(col > 1 && row > 1 && !(core->collection[row-1][col-1]->getChessPieceColor() == team)) {//up left
-            location.append(core->collection[row-1][col-1]);
-            core->collection[row-1][col-1]->setColor(Qt::darkRed);
-            if(location.last()->getHasChessPiece()){
+        if(col > 1 && row > 1 && !(game->collection[row-1][col-1]->getPieceColor() == team)) {//up left
+            location.append(game->collection[row-1][col-1]);
+            game->collection[row-1][col-1]->setColor(Qt::darkYellow);
+            if(location.last()->getHasPiece()){
                 location.last()->setColor(Qt::red);
             }
         }
-        if(col < 8 && row > 1 && !(core->collection[row-1][col+1]->getChessPieceColor() == team)) { // up right
-            location.append(core->collection[row-1][col+1]);
-            core->collection[row-1][col+1]->setColor(Qt::darkRed);
-            if(location.last()->getHasChessPiece()){
+        if(col < 8 && row > 1 && !(game->collection[row-1][col+1]->getPieceColor() == team)) { // up right
+            location.append(game->collection[row-1][col+1]);
+            game->collection[row-1][col+1]->setColor(Qt::darkYellow);
+            if(location.last()->getHasPiece()){
                 location.last()->setColor(Qt::red);
             }
         }
-        if(row>1 && !(core->collection[row-1][col]->getChessPieceColor() == team)) {//up
-            location.append(core->collection[row-1][col]);
-            core->collection[row-1][col]->setColor(Qt::darkRed);
-            if(location.last()->getHasChessPiece()){
+        if(row>1 && !(game->collection[row-1][col]->getPieceColor() == team)) {//up
+            location.append(game->collection[row-1][col]);
+            game->collection[row-1][col]->setColor(Qt::darkYellow);
+            if(location.last()->getHasPiece()){
                 location.last()->setColor(Qt::red);
             }
         }
-        if(row<8 && !(core->collection[row+1][col]->getChessPieceColor() == team)) {//down
-            location.append(core->collection[row+1][col]);
-            core->collection[row+1][col]->setColor(Qt::darkRed);
-            if(location.last()->getHasChessPiece()){
+        if(row<8 && !(game->collection[row+1][col]->getPieceColor() == team)) {//down
+            location.append(game->collection[row+1][col]);
+            game->collection[row+1][col]->setColor(Qt::darkYellow);
+            if(location.last()->getHasPiece()){
                 location.last()->setColor(Qt::red);
             }
         }
-        if(col>1 && !(core->collection[row][col-1]->getChessPieceColor() == team)) {// left
-            location.append(core->collection[row][col-1]);
-            core->collection[row][col-1]->setColor(Qt::darkRed);
-            if(location.last()->getHasChessPiece()){
+        if(col>1 && !(game->collection[row][col-1]->getPieceColor() == team)) {// left
+            location.append(game->collection[row][col-1]);
+            game->collection[row][col-1]->setColor(Qt::darkYellow);
+            if(location.last()->getHasPiece()){
                 location.last()->setColor(Qt::red);
             }
         }
-        if(col<8 && !(core->collection[row][col+1]->getChessPieceColor() == team)) {//right
-            location.append(core->collection[row][col+1]);
-            core->collection[row][col+1]->setColor(Qt::darkRed);
-            if(location.last()->getHasChessPiece()){
+        if(col<8 && !(game->collection[row][col+1]->getPieceColor() == team)) {//right
+            location.append(game->collection[row][col+1]);
+            game->collection[row][col+1]->setColor(Qt::darkYellow);
+            if(location.last()->getHasPiece()){
                 location.last()->setColor(Qt::red);
             }
         }
-        if(col > 1 && row < 8  && !(core->collection[row+1][col-1]->getChessPieceColor() == team)) {//down left
-            location.append(core->collection[row+1][col-1]);
-            core->collection[row+1][col-1]->setColor(Qt::darkRed);
-            if(location.last()->getHasChessPiece()){
+        if(col > 1 && row < 8  && !(game->collection[row+1][col-1]->getPieceColor() == team)) {//down left
+            location.append(game->collection[row+1][col-1]);
+            game->collection[row+1][col-1]->setColor(Qt::darkYellow);
+            if(location.last()->getHasPiece()){
                 location.last()->setColor(Qt::red);
             }
         }
-        if(col < 8 && row < 8 && !(core->collection[row+1][col+1]->getChessPieceColor() == team)) {//down right
-            location.append(core->collection[row+1][col+1]);
-            core->collection[row+1][col+1]->setColor(Qt::darkRed);
-            if(location.last()->getHasChessPiece()){
+        if(col < 8 && row < 8 && !(game->collection[row+1][col+1]->getPieceColor() == team)) {//down right
+            location.append(game->collection[row+1][col+1]);
+            game->collection[row+1][col+1]->setColor(Qt::darkYellow);
+            if(location.last()->getHasPiece()){
                 location.last()->setColor(Qt::red);
             }
         }
+        /*if(col < 8 && row == 8 && !(game->collection[row][col+1]->getPieceColor() == team)) {//down right
+            location.append(game->collection[row+1][col+1]);
+            game->collection[row+1][col+1]->setColor(Qt::darkYellow);
+            if(location.last()->getHasPiece()){
+                location.last()->setColor(Qt::red);
+            }
+        }*/
 
 
             findUnSafeLocation();
@@ -91,12 +98,12 @@ void King::move()
 }
 /*se encarga de realizar un check para ver si el rey se encuentra en jaque*/
 void King::findUnSafeLocation() {
-    QList <ChessPiece *> pList = core->piecesInGame;
+    QList <Piece *> pList = game->piecesIngame;
     for(size_t i = 0,n = pList.size(); i < n; i++) {
 
         if(pList[i]->getSide() != this->getSide())
         {
-            QList <ChessCell *> bList = pList[i]->moveLocation();
+            QList <Locker *> bList = pList[i]->moveLocation();
 
             for(size_t j = 0, n = bList.size(); j < n; j++) {
                 Pawn *c = dynamic_cast<Pawn *> (pList[i]) ;
