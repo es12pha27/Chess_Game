@@ -10,7 +10,7 @@ public:
     void move();
 
  private:
-
+//Modifique el pawn Del ajedrez Vamos a ver si se modifica
 
 };
 
