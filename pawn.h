@@ -11,6 +11,7 @@ public:
 
  private:
 //Modifique el pawn Del ajedrez Vamos a ver si se modifica
+// Juana la cubana esto es un a prueba
 
 };
 
